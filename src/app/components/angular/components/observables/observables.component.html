@@ -62,8 +62,7 @@
 <p>Quand l'objectif est d'afficher les émissions d'un Observable dans le DOM, il y a le pipe <code class="code-inline"> | async </code></p>
 <p><code class="code-inline"> | async </code> ne formate pas la donnée, il <span class="red">souscrit</span> à un Observable et <span class="red">insère</span> les émissions dans le DOM.</p>
 
-
-  <pre>
+<pre>
   <label class="label">TS</label>
   <code>
     import &#123;interval, Observable} from "rxjs";
@@ -75,11 +74,57 @@
     }
   </code>
 </pre>
-  <pre>
+<pre>
   <label class="label">HTML</label>
   <code>
-    <h1><span>&#123;&#123;</span> interval$ | async}}</h1>
+    &lt;h1><span>&#123;&#123;</span> interval$ | async }}&lt;/h1>
   </code>
 </pre>
 
+<h3 class="red-yellow-txt">Manipuler les émissions avec les opérateurs bas niveau</h3>
+<p>Il existe 2 types principaux d'opérateurs :</p>
+<ul>
+  <li>Les opérateurs <span class="red">bas niveau</span> : ils touchent aux émissions directement, généralement pour <span class="red">transformer</span> ou <span class="red">filtrer</span> ces émissions.</li>
+  <li>les opérateurs <span class="red">haut niveau</span> : ils touchent à <span class="red">l'Observable lui-même</span>.</li>
+</ul>
+
+<p>Pour appliquer des opérateurs à un Observable, on les passe, <span class="red">dans l'ordre</span> à la méthode <code class="code-inline"> pipe() </code></p>
+<p><code class="code-inline"> pipe() </code> crée un <span class="red">nouvel</span> Observable en se branchant à un autre Observable et en y ajoutant des opérateurs.</p>
+<p>Chaque émission de l'Observable <span class="red">traverse</span> le pipe et donc les opérateurs <span class="red">dans l'ordre</span>.</p>
+
+<h4 class="red-yellow-txt">Transformer les émissions</h4>
+
+<div class="definition">
+<p><span class="red">filter()</span> : permet de <span class="red">filtrer</span> les émissions d'un Observable.</p>
+<p><span class="red">map()</span> : permet de <span class="red">transformer</span> les émissions d'un Observable.</p>
+<p><span class="red">tap()</span> : permet de créer des <span class="red">effets secondaires</span> => Ce sont des fonctions qui font quelque chose avec les émissions d'un Observable <span class="red">sans les modifier</span>.</p>
+</div>
+
+<pre>
+  <label class="label">TS</label>
+  <code>
+    import &#123;interval, map, filter, Observable, tap} from "rxjs";
+
+    public interval$!: Observable&lt;string>;
+
+    ngOnInit():void &#123;
+    this.interval$ = interval(1000).pipe(
+        filter(value => value % 3 === 0),
+        map(value => value % 2 === 0 ?
+          `Je suis $&#123;value} et je suis PAIR` :
+          `Je suis $&#123;value} et je suis IMPAIR`
+        ),
+        tap(text => this.logger(text))
+      )
+    }
+
+    public logger(text:string):void &#123;
+      console.log(`Log: $&#123;text}`)
+    }
+  </code>
+</pre>
+
+<h3 class="red-yellow-txt">Les opérateurs de haut niveau</h3>
+
+<p>Un Observable de haut niveau est un Observable sui souscrit à d'autres Observables</p>
 
