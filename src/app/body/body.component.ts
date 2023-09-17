@@ -9,9 +9,22 @@ import { UrlService } from '../services/url.service';
 export class BodyComponent implements OnInit{
   // à dynamiser
   // data vers sidebar
-  public url= 'angular';
+ // public url= 'angular';
+  public url!: string;
+ // public url$ = this.urlService.getUrl().getValue();
+
+  constructor(private urlService: UrlService) {
+    // Obtenez l'URL depuis le service
+    /*this.url = this.urlService.getUrl();*/
+  }
+
 
   ngOnInit():void {
+    this.urlService.getUrl().subscribe((url) => {
+      this.url = url;
+    });
+    console.log('get url body : ', this.url)
+    console.log('Composant parent initialisé');
   }
-  
+
 }

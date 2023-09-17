@@ -1,7 +1,6 @@
-import {Component, Input, OnInit} from '@angular/core';
+import { Component, Input, OnInit} from '@angular/core';
 import { tap } from 'rxjs';
 import { UrlService } from 'src/app/services/url.service';
-
 
 @Component({
   selector: 'app-sidebar',
@@ -9,16 +8,18 @@ import { UrlService } from 'src/app/services/url.service';
   styleUrls: ['./sidebar.component.scss']
 })
 
-export class SidebarComponent implements OnInit{
+export class SidebarComponent implements  OnInit {
 
   public items!: string[]
 
   // data depuis BODY
-  @Input() currentPath!: string
-  
-  ngOnInit(): void{
+  //@Input() currentPath!: string
+  public currentUrl:string='angular'
 
-        if(this.currentPath === 'angular'){
+  ngOnInit():void{
+   // console.log('current path : ', this.currentPath);
+
+        if(this.currentUrl === 'angular'){
           this.items  = [
             'introduction',
             'component',
@@ -30,11 +31,11 @@ export class SidebarComponent implements OnInit{
             'observables',
             'exercices'
           ]
-        } else if (this.currentPath === 'github'){
+        } else if (this.currentUrl=== 'github'){
           this.items  = [
             'github page',
           ]
-        } else  if (this.currentPath === 'algorithmique'){
+        } else  if (this.currentUrl === 'algorithmique'){
           this.items  = [
             'chapitre 1 : Le rôle de l\'algorithmiques',
           ]
