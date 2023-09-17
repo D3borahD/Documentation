@@ -135,6 +135,12 @@ pre {
   margin: 0;
 }
 
+.code-inline {
+  white-space: pre;
+  background-color: #002451;
+  color: $light2;
+}
+
 .label {
   position: absolute;
   color: $light2;

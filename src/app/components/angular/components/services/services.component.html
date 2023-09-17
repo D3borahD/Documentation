@@ -15,7 +15,7 @@
   </code>
 </pre>
 
-<p>Un service est une class, pour le déclarer on utilise le décorateur @Injectable()</p>
+<p>Un service est une class, pour le déclarer on utilise le décorateur <code class="code-inline"> @Injectable() </code></p>
 
 <pre>
   <label class="label">TS</label>
@@ -34,7 +34,7 @@
   </code>
 </pre>
 
-<p>Les services n'ont pas de méthode ngOnInit() car ils ne sont pas instantiés de la même manière que les composants.</p>
+<p>Les services n'ont pas de méthode <code class="code-inline"> ngOnInit() </code> car ils ne sont pas instantiés de la même manière que les composants.</p>
 <p>Pour utiliser un service dans un component, il faut utiliser le système d'injection de dépendances fournit par Angular.</p>
 <p>Il faut passer un argument du type service au constructor du component, Angular met à disposition la bonne instance du service</p>
 

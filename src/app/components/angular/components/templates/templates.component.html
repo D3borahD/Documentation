@@ -6,7 +6,7 @@
   <li class="red-yellow-txt">Attribute binding</li>
 </ul>
 
-<p>Pour initialiser les propriétés en suivant les "best practices Angular", on utilise la méthode <span class="red-yellow-txt">ngOnInit()</span>.</p>
+<p>Pour initialiser les propriétés en suivant les "best practices Angular", on utilise la méthode <code class="code-inline"> ngOnInit() </code>.</p>
 <p>Pour l'utiliser, il faut implémenter l'<span class="red-yellow-txt">interface OnInit</span></p>
 
 <pre>
@@ -42,7 +42,7 @@
 
 <div class="definition">
   <i class="fa-solid fa-circle-info red-yellow-txt"></i>
-  <p>La méthode <span class="red-yellow-txt">ngOnInit()</span> est appelée automatiquement par Angular au moment de la <span class="red-yellow-txt">création de chaque instance</span> du composant.</p>
+  <p>La méthode <code class="code-inline"> ngOnInit() </code> est appelée automatiquement par Angular au moment de la <span class="red-yellow-txt">création de chaque instance</span> du composant.</p>
   <p>Elle permet d'initialiser des propriétés</p>
 </div>
 
@@ -92,7 +92,7 @@
 </pre>
 <p>Le nom de la méthode qui commence par <span class="red">on</span> signale qu'elle répond à un <span class="red">évènement</span></p>
 
-<p>Quand l'utilisateur click sur le bouton, Angular appelle la méthode <span class="red">onLike()</span> dans la class du composant.</p>
+<p>Quand l'utilisateur click sur le bouton, Angular appelle la méthode <code class="code-inline"> onLike() </code> dans la class du composant.</p>
 
 <div class="definition">
   <p>La réponse aux évènements est un aspect du flux de données unidirectionnel d'Angular.</p>
@@ -121,8 +121,8 @@
 }
   </code>
 </pre>
-<p>Le <span class="red">décorateur @Input()</span> dans un component ou une directive enfant signifie que la propriété peut recevoir sa valeur depuis son component parent.</p>
-<p>Pour utiliser <span class="red">@Input()</span>, il faut configurer le parent et l'enfant.</p>
+<p>Le <span class="red">décorateur </span> <code class="code-inline"> @Input() </code> dans un component ou une directive enfant signifie que la propriété peut recevoir sa valeur depuis son component parent.</p>
+<p>Pour utiliser <code class="code-inline"> @Input() </code>, il faut configurer le parent et l'enfant.</p>
 <h4 class="red-yellow-txt">Configurer le component enfant : </h4>
 <pre>
   <label class="file-name">📄 enfant.component.ts</label>
