@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { Router } from '@angular/router';
+import {ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-algorithms',
@@ -8,9 +8,10 @@ import { Router } from '@angular/router';
 })
 export class AlgorithmsComponent {
 
-  constructor(private router: Router) {}
+  constructor(private activatedRoute: ActivatedRoute) {}
 
-  ngOnInit():void {
-    console.log('this route : ', this.router.url)
+  ngOnInit() {
+    this.activatedRoute.url
+      .subscribe((url) => console.log('The URL changed to: ' + url));
   }
 }

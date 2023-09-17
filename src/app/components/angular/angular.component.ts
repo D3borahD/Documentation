@@ -1,5 +1,5 @@
-import { Component, EventEmitter, Output} from '@angular/core';
-import {Router} from '@angular/router';
+import { Component} from '@angular/core';
+import {ActivatedRoute} from '@angular/router';
 
 @Component({
   selector: 'app-angular',
@@ -8,15 +8,12 @@ import {Router} from '@angular/router';
 })
 export class AngularComponent {
 
-  public routerUrl:string = this.router.url
-  
+  //public routerUrl:string = this.router.url
+  constructor(private activatedRoute: ActivatedRoute) {}
 
-  constructor(private router: Router) {}
-
-  ngOnInit():void {
-    console.log('this route :  ANGULAR COMPONENT', this.router.url)
+  ngOnInit() {
+    this.activatedRoute.url
+      .subscribe((url) => console.log('The URL changed to: ' + url));
   }
-
-
-
+  
 }

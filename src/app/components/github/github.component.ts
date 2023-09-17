@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { Router } from '@angular/router';
+import {ActivatedRoute} from '@angular/router';
 
 @Component({
   selector: 'app-github',
@@ -8,11 +8,12 @@ import { Router } from '@angular/router';
 })
 export class GithubComponent {
 
-  constructor(private router: Router) {}
-  
-  public routerUrl:string = this.router.url
+  constructor(private activatedRoute: ActivatedRoute) {}
 
-  ngOnInit():void {
-    console.log('this route : ', this.router.url)
+  public activatedUrl:string = ''
+
+  ngOnInit() {
+    this.activatedRoute.url
+      .subscribe((url) => console.log('The URL changed to: ' + url));
   }
 }

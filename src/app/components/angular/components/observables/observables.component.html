@@ -6,3 +6,80 @@
   <li>les <span class="red">fonctions async/await :</span> des fonctions qui mettent leur exécution en attente jusqu'à l'arrivée de l'évènement attendu.</li>
 </ul>
 <p>Angular fournit un outil pour gérer les évènements qui ont lieu au cours du temps : la <span class="red">library RxJS</span>  et ses <span class="red">Observables</span></p>
+
+<h3 class="red-yellow-txt">Principe</h3>
+<ul>
+  <li>Un Observable est un objet qui <span class="red">émet des valeurs au cours du temps</span>.</li>
+  <li>Il est <span class="red">typé</span> : il émettra toujours des valeurs du même type.</li>
+  <li>Un Observable peut émettre une <span class="red">erreur</span> : à ce moment-là, l'Observable est détruit et n'émettra plus de valeurs.</li>
+  <li>L'Observable peut également être <span class="red">complété</span> : il est aussi détruit et n'émettra plus rien.</li>
+</ul>
+
+<p>On peut observer un observable et réagir à ses émissions.</p>
+<p>On observe un Observable avec sa méthode <code class="code-inline"> subscribe() </code> pour souscrire à l'Observable.</p>
+<div class="definition">
+  <span class="underline"><i class="fa-solid fa-circle-info red-yellow-txt"></i> Attention :</span>
+  <p>Il ne faut pas oublier de <code class="code-inline"> unsubscribe() </code> quand on a plus besoin de l'Observable.</p>
+  <p>Sinon, risque de créer des <span class="red">fuites de mémoire</span>.</p>
+</div>
+
+<h3 class="red-yellow-txt">Créer et souscrire à un Observable</h3>
+
+<p>Créer un Observable qui émet toutes les secondes : </p>
+
+<pre>
+  <label class="label">TS</label>
+  <code>
+    import &#123;interval} from "rxjs";
+
+    export class AppComponent implements OnInit&#123;
+
+      ngOnInit() &#123;
+      const interval$ = interval(1000)
+      interval$.subscribe(value => console.log(value))
+      }
+    }
+  </code>
+</pre>
+
+<div class="definition">
+  <p>La norme est d'ajouter un <span class="red">$</span> à la fin du nom d'une variable qui contient un Observable.</p>
+  <code class="code-inline"> const interval$ = interval(1000) </code>
+</div>
+
+<p>ATTENTION : ne pas utiliser cette méthode à l'avenir : </p>
+<p>On peut passer un <span class="red">callback</span> à la méthode <code class="code-inline"> subscribe() </code> qui sera exécuté à chaque émission.</p>
+<code class="code-inline"> interval$.subscribe(value => console.log("je suis un Observable : ", value)) </code>
+<p>Toutes les secondes, l'Observable émet un nombre. Celui-ci est capté et traité par la méthode passée à <code class="code-inline"> subscribe() </code>.</p>
+
+<div class="definition">
+  <p>Si on ne <span class="red">soucrit</span> pas à un Observable, dans la majorité des cas; <span class="red">il n'émet rien</span></p>
+  <p>Un Observable crée <span class="red">une nouvelle instance pour chaque souscription</span></p>
+</div>
+
+<h3 class="red-yellow-txt">Afficher les émissions avec le pipe async</h3>
+
+<p>Quand l'objectif est d'afficher les émissions d'un Observable dans le DOM, il y a le pipe <code class="code-inline"> | async </code></p>
+<p><code class="code-inline"> | async </code> ne formate pas la donnée, il <span class="red">souscrit</span> à un Observable et <span class="red">insère</span> les émissions dans le DOM.</p>
+
+
+  <pre>
+  <label class="label">TS</label>
+  <code>
+    import &#123;interval, Observable} from "rxjs";
+
+    public interval$!: Observable&lt;number>;
+
+    ngOnInit():void &#123;
+    this.interval$ = interval(1000)
+    }
+  </code>
+</pre>
+  <pre>
+  <label class="label">HTML</label>
+  <code>
+    <h1><span>&#123;&#123;</span> interval$ | async}}</h1>
+  </code>
+</pre>
+
+
